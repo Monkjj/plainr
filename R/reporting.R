@@ -13,6 +13,7 @@
 #'
 #' test = t.test(c(1,2,3), c(5,4,3))
 #' p_show(test$p.value)
+#' @export
 p_show <- function(x, max_digits = 3, signif = 2, nonbreaking = TRUE) {
   if (nonbreaking){
     space = "\ "
@@ -43,26 +44,25 @@ p_show <- function(x, max_digits = 3, signif = 2, nonbreaking = TRUE) {
 #' This function converts a large raw number to a string of a multiplicative
 #' expression with 10^x^.
 #' @param x A large number.
-#' @return A string in the form of a $\cdot$ 10^b^
+#' @return A string in the form of a $\\cdot$ 10^b^
 #' @examples
 #' power_val(exp(20))
-#'
+#' @importFrom stringr str_extract
+#' @export
 power_val <- function(x){
-  require(stringr)
-
   sci = format(x, scientific = TRUE)
 
-  sign_base = str_extract(sci, "^[\\-+]")
+  sign_base = stringr::str_extract(sci, "^[\\-+]")
   if (is.na(sign_base)){
     sign_base = ""
   }
-  base = str_extract(sci, "[1-9]\\.[1-9]")
+  base = stringr::str_extract(sci, "[1-9]\\.[1-9]")
 
-  sign_power = str_extract(sci, "(?<=e)[\\-+]")
+  sign_power = stringr::str_extract(sci, "(?<=e)[\\-+]")
   if (sign_power == "+"){
     sign_power = ""
   }
-  power = str_extract(sci, "[1-9]*$")
+  power = stringr::str_extract(sci, "[1-9]*$")
 
   return(paste0(sign_base, base, "$\\cdot$\\ 10^", sign_power, power, "^"))
 }
@@ -79,12 +79,12 @@ power_val <- function(x){
 #' results = to_named_list(df, by = "ID")
 #'
 #' results$Item1$First_Value
+#' @importFrom tidyr nest
+#' @importFrom tibble deframe
+#' @export
 to_named_list <- function(df, by){
-  require(tidyr)
-  require(tibble)
-
-  df %>%
-    tidyr::nest(.by = all_of(by)) %>%
+  df |>
+    tidyr::nest(.by = tidyselect::all_of(by)) |>
     tibble::deframe()
 }
 
@@ -99,10 +99,10 @@ to_named_list <- function(df, by){
 #' @param digits The number of digits to which to round the value.
 #' @param print_name Should the name of the statistic ("F", "t", ...) be printed? **NOT IMPLEMENTED YET**
 #' @return A string specifying degrees of freedom and test statistic.
+#' @importFrom broom tidy
+#' @importFrom stringr str_detect
+#' @export
 report <- function(results, term, which_value, digits = 3, print_name = TRUE){
-  require(broom)
-  require(stringr)
-
   if (any(c("lm", "anova") %in% class(results))){
     table = broom::tidy(results)
   } else {

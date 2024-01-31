@@ -10,7 +10,7 @@ power_val(x)
 \item{x}{A large number.}
 }
 \value{
-A string in the form of a $\cdot$ 10^b^
+A string in the form of a $\\cdot$ 10^b^
 }
 \description{
 This function converts a large raw number to a string of a multiplicative
@@ -18,5 +18,4 @@ expression with 10^x^.
 }
 \examples{
 power_val(exp(20))
-
 }

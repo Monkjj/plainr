@@ -1,10 +1,16 @@
-Package: rreport
+Package: showr
 Title: Conveniently Report Statistical Results
 Version: 0.0.0.9000
 Authors@R: 
-    person("Jan", "Johann", "dermitdenhaaren@gmx.de", role = "aut")
+    person("Jan", "Johann", , "dermitdenhaaren@gmx.de", role = c("aut", "cre"))
 Description: Some functions to simplify reporting results of statistical computations (like ANOVA, PERMANOVA) in Rmd text sections.
-License: `use_mit_license()`
+Imports: 
+  stringr,
+  tidyr,
+  tibble,
+  broom,
+  tidyselect
+License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
