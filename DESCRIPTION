@@ -2,7 +2,7 @@ Package: rreport
 Title: Conveniently Report Statistical Results
 Version: 0.0.0.9000
 Authors@R: 
-    person("Jan", "Johann", , "", role = "aut")
+    person("Jan", "Johann", "dermitdenhaaren@gmx.de", role = "aut")
 Description: Some functions to simplify reporting results of statistical computations (like ANOVA, PERMANOVA) in Rmd text sections.
 License: `use_mit_license()`
 Encoding: UTF-8
