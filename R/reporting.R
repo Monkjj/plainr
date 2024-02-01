@@ -42,9 +42,9 @@ p_show <- function(x, max_digits = 3, signif = 2, nonbreaking = TRUE) {
 #' Function to report high values as powers of 10
 #'
 #' This function converts a large raw number to a string of a multiplicative
-#' expression with 10^x^.
+#' expression with 10^x.
 #' @param x A large number.
-#' @return A string in the form of a $\\cdot$ 10^b^
+#' @return A string in the form of a * 10^b
 #' @examples
 #' power_val(exp(20))
 #' @importFrom stringr str_extract
@@ -81,6 +81,7 @@ power_val <- function(x){
 #' results$Item1$First_Value
 #' @importFrom tidyr nest
 #' @importFrom tibble deframe
+#' @importFrom tidyselect all_of
 #' @export
 to_named_list <- function(df, by){
   df |>
